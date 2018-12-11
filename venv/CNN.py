@@ -14,7 +14,8 @@ def avg_pool_2(x):
     return tf.nn.avg_pool(x,ksize=[1,2,2,1],  strides=[1, 2, 2, 1], padding='SAME')
 
 session = tf.InteractiveSession()
-
+listTestAcc = []
+listTrainAcc = []
 trainingData = np.load("trainingData.npy")
 testingData = np.load("testingData.npy")
 trainingLabel = np.load("trainingLabel.npy")
@@ -41,19 +42,30 @@ h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat,Weight_full_connection3))
 W_fc2 = weight_variable([1024,11])
 y_out = tf.nn.softmax(tf.matmul(h_fc1,W_fc2))
 
-ERM = tf.reduce_mean(tf.abs(y - y_out))
-train_step = tf.train.AdadeltaOptimizer(1e-4).minimize(ERM)
+cross_entropy = tf.reduce_mean(-tf.reduce_sum(y*tf.log(y_out),reduction_indices=[1]))
+train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
 
 correct_prediction = tf.equal(tf.argmax(y_out,1), tf.argmax(y,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 tf.global_variables_initializer().run()
 for i in range(2000):
-    # batch = nextBatch(50)
-    # if i%20 == 0:
-    #     train_accuracy = accuracy.eval(feed_dict = {})
-    print(i)
-    train_step.run(feed_dict = {x:trainingData[i], y:trainingLabel[i]})
+    # batchX, batchY = nextBatch(50)
+    if i%20 == 0:
+        train_accuracy = accuracy.eval(feed_dict={x: trainingData, y: trainingLabel})
+        test_accuracy = accuracy.eval(feed_dict={x:testingData, y:testingLabel})
+        print("test data ",i,": ",test_accuracy)
+        print("train data ",i,": ",train_accuracy)
+        listTestAcc.append(test_accuracy)
+        listTrainAcc.append(train_accuracy)
+    if i%100 == 0:
+        np.save('testAcc',listTestAcc)
+        np.save('trainAcc',listTrainAcc)
+        print("saved")
+    # print(i)
+
+    train_step.run(feed_dict = {x:trainingData, y:trainingLabel})
+
 
 print("test accuracy %g"%accuracy.eval(feed_dict={x:testingData, y:testingLabel}))
 
