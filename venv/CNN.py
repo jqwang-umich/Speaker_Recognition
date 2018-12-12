@@ -31,7 +31,7 @@ def nextBatch(n):
         listY.append(label[num[i]])
     return listX,listY
 
-session = tf.InteractiveSession()
+session = tf.InteractiveSession(config=tf.ConfigProto(device_count={'gpu':0}))
 listTestAcc = []
 listTrainAcc = []
 trainingData = np.load("trainingData.npy")
@@ -45,20 +45,20 @@ y = tf.placeholder(tf.float32)
 # print(x.shape)
 x_image = tf.reshape(x,[-1,16,16,1])
 
-Weight_conv1 = weight_variable([5,5,1,2])
-b_conv1 = bias_variable([2])
+Weight_conv1 = weight_variable([8,8,1,1])
+b_conv1 = bias_variable([1])
 h_conv1 = tf.nn.relu(conv2d(x_image,Weight_conv1)+ b_conv1)
-h_pool1 = max_pool_2(h_conv1)
-# h_pool1 = h_conv1
+# h_pool1 = avg_pool_2(h_conv1)
+h_pool1 = h_conv1
 
-Weight_conv2 = weight_variable([5,5,2,4])
-b_conv2 = bias_variable(([4]))
+Weight_conv2 = weight_variable([8,8,1,1])
+b_conv2 = bias_variable(([1]))
 h_conv2 = tf.nn.relu(conv2d(h_pool1,Weight_conv2)+b_conv2)
-h_pool2 = max_pool_2(h_conv2)
-# h_pool2 = h_conv2
+# h_pool2 = avg_pool_2(h_conv2)
+h_pool2 = h_conv2
 
-Weight_full_connection3 = weight_variable([4*4*4,1024])
-h_pool2_flat = tf.reshape(h_pool2,[-1,4*4*4])
+Weight_full_connection3 = weight_variable([16*16,1024])
+h_pool2_flat = tf.reshape(h_pool2,[-1,16*16])
 h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat,Weight_full_connection3))
 
 W_fc2 = weight_variable([1024,11])
@@ -72,7 +72,7 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 tf.global_variables_initializer().run()
 for i in range(20000):
-    batchX, batchY = nextBatch(50)
+    batchX, batchY = nextBatch(40)
     if i%20 == 0:
         train_accuracy = accuracy.eval(feed_dict={x: batchX, y: batchY})
         test_accuracy = accuracy.eval(feed_dict={x:testingData, y:testingLabel})
@@ -83,7 +83,7 @@ for i in range(20000):
     if i%100 == 0:
         np.save('BatchedTestAcc',listTestAcc)
         np.save('BatchedTrainAcc',listTrainAcc)
-        print("saved")
+        # print("saved")
     # print(i)
 
     train_step.run(feed_dict = {x:batchX, y:batchY})
