@@ -50,6 +50,8 @@ size2 = 16
 
 testingData = np.load("testingData.npy")
 testingLabel = np.load("testingLabel.npy")
+data = np.load('trainingData.npy')
+label = np.load('trainingLabel.npy')
 
 x = tf.placeholder(tf.float32,[None,size1,size2,1])
 y = tf.placeholder(tf.float32)
@@ -74,8 +76,8 @@ z3 = a3
 y_out = tf.nn.softmax(z3)
 
 
-cross_entropy = tf.reduce_mean(-tf.reduce_sum(y*tf.log(y_out),reduction_indices=[1]))
-train_step = tf.train.GradientDescentOptimizer(0.005).minimize(cross_entropy)
+cross_entropy = tf.reduce_mean(-tf.reduce_sum(y*tf.log(y_out),reduction_indices=[0]))
+train_step = tf.train.GradientDescentOptimizer(0.5).minimize(cross_entropy)
 
 correct_prediction = tf.equal(tf.argmax(y_out,1), tf.argmax(y,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
@@ -83,9 +85,9 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 tf.global_variables_initializer().run()
 
 for i in range(20000):
-    batchX, batchY = nextBatch(50)
+    # batchX, batchY = nextBatch(50)
     if i%20 == 0:
-        train_accuracy = accuracy.eval(feed_dict={x: batchX, y: batchY})
+        train_accuracy = accuracy.eval(feed_dict={x: data, y: label})
         test_accuracy = accuracy.eval(feed_dict={x:testingData, y:testingLabel})
         print("test data ",i,": ",test_accuracy)
         print("train data ",i,": ",train_accuracy)
@@ -97,7 +99,7 @@ for i in range(20000):
     #     # print("saved")
     # # print(i)
 
-    train_step.run(feed_dict = {x:batchX, y:batchY})
+    train_step.run(feed_dict = {x:data, y:label})
 
 
 print("test accuracy %g"%accuracy.eval(feed_dict={x:testingData, y:testingLabel}))

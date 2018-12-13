@@ -24,10 +24,15 @@
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/BPNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/BPNN.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/BatchedTestAcc.npy" beforeDir="false" afterPath="$PROJECT_DIR$/venv/BatchedTestAcc.npy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/BatchedTrainAcc.npy" beforeDir="false" afterPath="$PROJECT_DIR$/venv/BatchedTrainAcc.npy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/CNN.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/CNN.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/venv/MFCC.py" beforeDir="false" afterPath="$PROJECT_DIR$/venv/MFCC.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/testingData.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/testingLabel.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/trainingData.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/trainingLabel.npy" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,20 +41,20 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Project$CNN.coverage" NAME="CNN Coverage Results" MODIFIED="1544588171551" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
-    <SUITE FILE_PATH="coverage/Project$MFCC.coverage" NAME="MFCC Coverage Results" MODIFIED="1544564326688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+    <SUITE FILE_PATH="coverage/Project$CNN.coverage" NAME="CNN Coverage Results" MODIFIED="1544632259358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+    <SUITE FILE_PATH="coverage/Project$MFCC.coverage" NAME="MFCC Coverage Results" MODIFIED="1544638910793" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
     <SUITE FILE_PATH="coverage/Project$TFtest.coverage" NAME="TFtest Coverage Results" MODIFIED="1544587766837" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
-    <SUITE FILE_PATH="coverage/Project$BPNN.coverage" NAME="BPNN Coverage Results" MODIFIED="1544588325090" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+    <SUITE FILE_PATH="coverage/Project$BPNN.coverage" NAME="BPNN Coverage Results" MODIFIED="1544632204741" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="1436651258">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="4" />
-          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.0" value="3" />
           <entry key="project.open.time.21" value="2" />
-          <entry key="project.open.time.23" value="2" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.open.time.23" value="3" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -66,12 +71,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="6231" />
+          <entry key="py" value="6320" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="6231" />
+          <entry key="Python" value="6320" />
         </counts>
       </usages-collector>
     </session>
@@ -81,38 +86,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/MFCC.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="13" selection-start-column="13" selection-end-column="13" />
-              <folding>
-                <marker date="1544560041052" expanded="true" signature="85:86" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/CNN.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="33" column="77" selection-start-line="33" selection-start-column="77" selection-end-line="33" selection-end-column="77" />
+            <state relative-caret-position="152">
+              <caret line="8" column="56" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="56" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
-                <marker date="1544588325014" expanded="true" signature="182:261" ph="..." />
-                <marker date="1544588325014" expanded="true" signature="469:1175" ph="..." />
-                <marker date="1544588325014" expanded="true" signature="572:888" ph="..." />
+                <marker date="1544638309630" expanded="true" signature="85:86" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/venv/CNN.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="48" column="38" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/BPNN.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="39" column="74" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="74" />
+            <state relative-caret-position="1197">
+              <caret line="64" column="31" selection-start-line="64" selection-start-column="31" selection-end-line="64" selection-end-column="31" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
-                <marker date="1544588284502" expanded="true" signature="353:584" ph="..." />
               </folding>
             </state>
           </provider>
@@ -121,8 +123,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/venv/TFtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="39" />
+            <state relative-caret-position="399">
+              <caret line="21" column="50" lean-forward="true" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -146,8 +148,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/venv/TFtest.py" />
-        <option value="$PROJECT_DIR$/venv/MFCC.py" />
         <option value="$PROJECT_DIR$/venv/BPNN.py" />
+        <option value="$PROJECT_DIR$/venv/MFCC.py" />
         <option value="$PROJECT_DIR$/venv/CNN.py" />
       </list>
     </option>
@@ -219,7 +221,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.BPNN">
+  <component name="RunManager" selected="Python.MFCC">
     <configuration name="BPNN" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -316,10 +318,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.BPNN" />
-        <item itemvalue="Python.CNN" />
-        <item itemvalue="Python.TFtest" />
         <item itemvalue="Python.MFCC" />
+        <item itemvalue="Python.CNN" />
+        <item itemvalue="Python.BPNN" />
+        <item itemvalue="Python.TFtest" />
       </list>
     </recent_temporary>
   </component>
@@ -340,12 +342,12 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.110341154" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12739871" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -375,18 +377,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/MFCC.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
+        <state relative-caret-position="152">
+          <caret line="8" column="56" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="56" />
           <folding>
-            <marker date="1544560041052" expanded="true" signature="85:86" ph="..." />
+            <element signature="e#0#18#0" expanded="true" />
+            <marker date="1544638309630" expanded="true" signature="85:86" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv/BPNN.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1197">
+          <caret line="64" column="31" selection-start-line="64" selection-start-column="31" selection-end-line="64" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/TFtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="18" selection-start-line="18" selection-end-line="18" selection-end-column="39" />
+        <state relative-caret-position="399">
+          <caret line="21" column="50" lean-forward="true" selection-start-line="21" selection-start-column="50" selection-end-line="21" selection-end-column="50" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
@@ -395,24 +408,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/venv/CNN.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="33" column="77" selection-start-line="33" selection-start-column="77" selection-end-line="33" selection-end-column="77" />
+        <state relative-caret-position="285">
+          <caret line="48" column="38" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
-            <marker date="1544588325014" expanded="true" signature="182:261" ph="..." />
-            <marker date="1544588325014" expanded="true" signature="469:1175" ph="..." />
-            <marker date="1544588325014" expanded="true" signature="572:888" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/BPNN.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="39" column="74" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="74" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-            <marker date="1544588284502" expanded="true" signature="353:584" ph="..." />
           </folding>
         </state>
       </provider>

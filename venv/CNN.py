@@ -31,7 +31,18 @@ def nextBatch(n):
         listY.append(label[num[i]])
     return listX,listY
 
-session = tf.InteractiveSession(config=tf.ConfigProto(device_count={'gpu':0}))
+def addLayer(input,inputLayer,outputLayer,pool = False):
+    Weight_conv1 = weight_variable([ para_size_conv, para_size_conv, inputLayer, outputLayer ])
+    b_conv1 = bias_variable([ outputLayer ])
+    h_conv1 = tf.nn.relu(conv2d(input, Weight_conv1) + b_conv1)
+    if pool:
+        h_pool1 = avg_pool_2(h_conv1)
+    else:
+        h_pool1 = h_conv1
+    return h_pool1
+
+# session = tf.InteractiveSession(config=tf.ConfigProto(device_count={'gpu':0}))
+session = tf.InteractiveSession()
 listTestAcc = []
 listTrainAcc = []
 trainingData = np.load("trainingData.npy")
@@ -39,27 +50,48 @@ testingData = np.load("testingData.npy")
 trainingLabel = np.load("trainingLabel.npy")
 testingLabel = np.load("testingLabel.npy")
 
+para_size_input = 28
+para_size_conv = 3
+para_size_layer1 = 32
+para_size_layer2 = 64
+para_size_layer3 = 128
+para_size_layer4 = 128
+para_size_pool = 2
+
 
 x = tf.placeholder(tf.float32)
 y = tf.placeholder(tf.float32)
 # print(x.shape)
-x_image = tf.reshape(x,[-1,16,16,1])
+x_image = tf.reshape(x,[-1,para_size_input,para_size_input,1])
 
-Weight_conv1 = weight_variable([8,8,1,1])
-b_conv1 = bias_variable([1])
-h_conv1 = tf.nn.relu(conv2d(x_image,Weight_conv1)+ b_conv1)
-# h_pool1 = avg_pool_2(h_conv1)
-h_pool1 = h_conv1
+output1 = addLayer(x_image,1,para_size_layer1)
+output2 = addLayer(output1,para_size_layer1,para_size_layer2)
+output3 = addLayer(output2,para_size_layer2,para_size_layer3)
 
-Weight_conv2 = weight_variable([8,8,1,1])
-b_conv2 = bias_variable(([1]))
-h_conv2 = tf.nn.relu(conv2d(h_pool1,Weight_conv2)+b_conv2)
-# h_pool2 = avg_pool_2(h_conv2)
-h_pool2 = h_conv2
+output_conv = output3
+para_size_layer_end = para_size_layer3
+para_fc_image_size = para_size_input
+# output4 =
+# Weight_conv1 = weight_variable([para_size_conv,para_size_conv,1,para_size_layer1])
+# b_conv1 = bias_variable([para_size_layer1])
+# h_conv1 = tf.nn.relu(conv2d(x_image,Weight_conv1)+ b_conv1)
+# # h_pool1 = avg_pool_2(h_conv1)
+# h_pool1 = h_conv1
+#
+# Weight_conv2 = weight_variable([para_size_conv,para_size_conv,para_size_layer1,para_size_layer2])
+# b_conv2 = bias_variable(([para_size_layer2]))
+# h_conv2 = tf.nn.relu(conv2d(h_pool1,Weight_conv2)+b_conv2)
+# # h_pool2 = avg_pool_2(h_conv2)
+# h_pool2 = h_conv2
+#
+# Weight_conv3 = weight_variable([para_size_conv,para_size_conv,para_size_layer2,para_size_layer3])
+# b_conv3 = bias_variable((para_size_layer3))
+# h_conv3 = tf.nn.relu(conv2d(h_pool2,Weight_conv3)+b_conv3)
+# h_pool3 = h_conv3
 
-Weight_full_connection3 = weight_variable([16*16,1024])
-h_pool2_flat = tf.reshape(h_pool2,[-1,16*16])
-h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat,Weight_full_connection3))
+Weight_full_connection = weight_variable([para_fc_image_size * para_fc_image_size * para_size_layer_end,1024])
+output_flat = tf.reshape(output_conv,[-1,para_fc_image_size * para_fc_image_size * para_size_layer_end])
+h_fc1 = tf.nn.relu(tf.matmul(output_flat,Weight_full_connection))
 
 W_fc2 = weight_variable([1024,11])
 y_out = tf.nn.softmax(tf.matmul(h_fc1,W_fc2))
@@ -72,9 +104,9 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 
 tf.global_variables_initializer().run()
 for i in range(20000):
-    batchX, batchY = nextBatch(40)
+    # batchX, batchY = nextBatch(40)
     if i%20 == 0:
-        train_accuracy = accuracy.eval(feed_dict={x: batchX, y: batchY})
+        train_accuracy = accuracy.eval(feed_dict={x: trainingData, y: trainingLabel})
         test_accuracy = accuracy.eval(feed_dict={x:testingData, y:testingLabel})
         print("test data ",i,": ",test_accuracy)
         print("train data ",i,": ",train_accuracy)
@@ -86,7 +118,7 @@ for i in range(20000):
         # print("saved")
     # print(i)
 
-    train_step.run(feed_dict = {x:batchX, y:batchY})
+    train_step.run(feed_dict = {x:trainingData, y:trainingLabel})
 
 
 print("test accuracy %g"%accuracy.eval(feed_dict={x:testingData, y:testingLabel}))
