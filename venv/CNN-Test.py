@@ -49,10 +49,10 @@ def addLayer(input,inputLayer,outputLayer,pool = False):
 
 para_size_input = 28
 para_size_conv = 3
-para_size_layer1 = 2
-para_size_layer2 = 2
-para_size_layer3 = 2
-para_size_layer4 = 2
+para_size_layer1 = 32
+para_size_layer2 = 64
+para_size_layer3 = 128
+para_size_layer4 = 128
 para_size_pool = 2
 
 output_conv = 0
@@ -64,16 +64,17 @@ def conv_net(x):
     output1 = addLayer(x, 1, para_size_layer1)
     output2 = addLayer(output1, para_size_layer1, para_size_layer2)
     output3 = addLayer(output2, para_size_layer2, para_size_layer3)
+    output4 = addLayer(output3, para_size_layer3, para_size_layer4)
 
-    output_conv = output3
-    para_size_layer_end = para_size_layer3
+    output_conv = output4
+    para_size_layer_end = para_size_layer4
     para_fc_image_size = para_size_input
 
-    Weight_full_connection = weight_variable([ para_fc_image_size * para_fc_image_size * para_size_layer_end,2 ])
+    Weight_full_connection = weight_variable([ para_fc_image_size * para_fc_image_size * para_size_layer_end,1024 ])
     output_flat = tf.reshape(output_conv, [ -1, para_fc_image_size * para_fc_image_size * para_size_layer_end ])
     h_fc1 = tf.nn.relu(tf.matmul(output_flat, Weight_full_connection))
 
-    W_fc2 = weight_variable([2, 11 ])
+    W_fc2 = weight_variable([1024, 11 ])
     out = tf.nn.softmax(tf.matmul(h_fc1, W_fc2))
 
     return out
